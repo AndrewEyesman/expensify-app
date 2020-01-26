@@ -1,30 +1,6 @@
-
+import expenses from '../fixtures/expenses'
 import selectExpenses from '../../selectors/expenses'
 import moment from 'moment'
-
-const expenses = [
-    {
-        id: '1',
-        description: 'gum',
-        note: '',
-        amount: 195,
-        createdAt: 0
-    },
-    {
-        id: '2',
-        description: 'rent',
-        note: '',
-        amount: 2005,
-        createdAt: moment(0).subtract(4, 'days').valueOf()
-    },
-    {
-        id: '3',
-        description: 'credit card',
-        note: '',
-        amount: 6583,
-        createdAt: moment(0).add(4, 'days').valueOf()
-    },
-]
 
 test('should filter by text value', () => {
     const filters = {
@@ -55,7 +31,7 @@ test('should filter by endDate', () => {
         text: '',
         sortBy: 'date',
         startDate: undefined,
-        endDate: moment(0).add(2, 'days').valueOf()
+        endDate: moment(0).add(2, 'days')
     }
     const result = selectExpenses(expenses, filters)
 
