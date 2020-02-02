@@ -14,8 +14,9 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database()
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
 
-export { firebase, database as default }
+export { firebase, googleAuthProvider, database as default }
 
 // database.ref('expenses').on('child_removed', (snapshot) => {
 //     console.log(snapshot.key, snapshot.val())
@@ -120,7 +121,8 @@ export { firebase, database as default }
 //     console.log(e)
 // })
 
-// // database.ref('isSingle').set(null)
+// database.ref('isSingle').set(null)
+
 // database.ref().update({
 //     stressLevel: 9,
 //     'job/company': 'amazon',
