@@ -15,7 +15,10 @@ module.exports = (env) => {
     const CSSExtract = new MiniCssExtractPlugin({ filename: 'styles.css' })
 
     return {
-        entry: './src/app.js',
+        entry: [
+            'babel-polyfill',
+            './src/app.js'
+        ],
         output: {
             path: path.resolve(__dirname, 'public', 'dist'),
             filename: 'bundle.js'
@@ -60,7 +63,8 @@ module.exports = (env) => {
                 'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID),
                 'process.env.FIREBASE_APP_ID': JSON.stringify(process.env.FIREBASE_APP_ID),
                 'process.env.FIREBASE_MEASUREMENT_ID': JSON.stringify(process.env.FIREBASE_MEASUREMENT_ID)
-            })
+            }),
+            new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
         ],
         devtool: isProduction ? 'source-map' : 'inline-source-map',
         devServer: {
